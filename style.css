@@ -1,0 +1,428 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    overflow-x: hidden;
+    font-family: "Arial", sans-serif;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fff;
+}
+
+/* --- HEADER --- */
+header {
+    background-color: red;
+    color: white;
+    width: 100%;
+    padding: 15px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.header-logo {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.header-logo img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.header-content {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.header-content h1 {
+    text-transform: uppercase;
+    font-size: 2rem;
+    margin: 5px 0;
+}
+
+.header-content p {
+    font-size: 1.5rem;
+    margin: 5px 0;
+}
+
+.sub-title, .admin-name {
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+#FunctionBTN {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* --- BUTTONS --- */
+.detailBet, .resetMoney {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
+
+.detailBet {
+    background-color: #03BD9C;
+    box-shadow: 0 0 5px #5CB65C, 0 0 10px yellow;
+}
+
+.resetMoney {
+    background-color: gold;
+    color: red;
+    box-shadow: 0 0 5px orange, 0 0 10px yellow;
+}
+
+/* --- MOBILE MENU --- */
+#FunctionBTN_mb {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+}
+
+.mb-btn {
+    width: 80%;
+    margin: 15px 0;
+    padding: 15px;
+    font-size: 1.2rem;
+}
+
+#closeFN_mb {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 36px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#more {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 35px;
+    cursor: pointer;
+    display: none; /* Hiện trên mobile sau */
+    z-index: 50;
+}
+
+/* --- SÀN ĐẤU (GRID LAYOUT) --- */
+#SanDau {
+    margin-top: 20px;
+    border: 2px solid red;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cột đều nhau */
+    gap: 10px;
+    padding: 10px;
+    width: 95%;
+    max-width: 800px;
+    background: #fff;
+}
+
+.ChooseBC {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Giữ hình vuông */
+    cursor: pointer;
+    border: 1px solid red;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.ChooseBC .BauCuaChoose {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+}
+
+.ChooseBC:active {
+    background-color: rgba(220, 20, 60, 0.2);
+}
+
+.chipBet {
+    position: absolute;
+    width: 40px;
+    top: var(--randomIndexT);
+    left: var(--randomIndexL);
+    pointer-events: none;
+}
+
+/* --- TRANG TRÍ (MÈO) --- */
+.deco-cat {
+    position: fixed;
+    bottom: 0;
+    width: 150px;
+    height: auto;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+.cat-left {
+    left: 20px;
+}
+
+.cat-right {
+    right: 20px;
+}
+
+/* --- XÓC ĐĨA --- */
+#PlateLidPlace {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+}
+
+#PlateLid {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.plate-img {
+    width: 100%;
+    height: 100%;
+}
+
+.LacBC {
+    position: absolute;
+    width: 18%; /* Kích thước xúc xắc % theo đĩa */
+    height: 18%;
+    background-color: transparent;
+    border-radius: 50%;
+    /* Tính toán vị trí dựa trên biến CSS */
+    top: calc(15% * var(--indexT) + 10%);
+    left: calc(18% * var(--indexL) + 5%);
+    object-fit: contain;
+}
+
+#Lid, #LidIn {
+    width: 310px;
+    height: 310px;
+    position: absolute;
+}
+
+#Lid {
+    /* Animation mặc định ẩn */
+}
+
+@keyframes moveLid {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-200px); opacity: 0; }
+}
+
+#closeShake {
+    margin-top: 20px;
+    font-size: 20px;
+    border-radius: 5px;
+    color: white;
+    background-color: crimson;
+    border: none;
+    padding: 10px 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* --- BUTTON LẮC --- */
+#submit {
+    width: 80%;
+    max-width: 300px;
+    background-color: red;
+    margin: 20px auto;
+    box-shadow: 0 5px #999;
+    color: white;
+    font-size: 24px;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 15px;
+    border: none;
+}
+
+#submit:active {
+    box-shadow: 0 2px #666;
+    transform: translateY(4px);
+}
+
+.block {
+    opacity: 0.6;
+    cursor: not-allowed !important;
+}
+
+/* --- TIỀN CƯỢC --- */
+#Money {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    overflow-x: auto;
+    width: 100%;
+    max-width: 100vw;
+    scroll-behavior: smooth;
+}
+
+#Money::-webkit-scrollbar {
+    height: 5px;
+}
+
+#Money::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 10px;
+}
+
+#Money img {
+    height: 60px;
+    flex-shrink: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid transparent;
+}
+
+.ChipsActive {
+    border-color: yellow !important;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px gold;
+}
+
+/* --- CHI TIẾT CƯỢC POPUP --- */
+#ShowBet {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.95);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#ShowBet p {
+    font-size: 1.5rem;
+    color: white;
+    margin: 5px 0;
+}
+
+#close_detailBet {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* --- ANIMATION SHAKE --- */
+.shake {
+    animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+/* --- RESPONSIVE / MEDIA QUERIES --- */
+
+/* Tablet & Mobile */
+@media screen and (max-width: 768px) {
+    .header-logo {
+        position: relative; /* Đưa logo về giữa */
+        left: auto;
+        top: auto;
+    }
+    
+    .deco-cat {
+        display: none; /* Ẩn mèo để thoáng màn hình */
+    }
+
+    #FunctionBTN {
+        display: none; /* Ẩn nút chức năng trên header */
+    }
+
+    #more {
+        display: block; /* Hiện nút menu hamburger */
+    }
+    
+    #SanDau {
+        gap: 5px;
+        padding: 5px;
+    }
+    
+    #PlateLid, #Lid, #LidIn {
+        width: 250px; /* Thu nhỏ đĩa xóc */
+        height: 250px;
+    }
+}
+
+/* Mobile nhỏ */
+@media screen and (max-width: 400px) {
+    .header-content h1 {
+        font-size: 1.5rem;
+    }
+    .header-content p {
+        font-size: 1.2rem;
+    }
+    #Money img {
+        height: 50px;
+    }
+}
